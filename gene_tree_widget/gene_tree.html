@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Gene tree</title>
+    <script type="text/javascript" src="../libs/js/d3/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../libs/js/jquery/jquery.min.js"></script>
+	<link href="../libs/css/tipsy.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../libs/js/jquery/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="../libs/js/phylowidget/gene_tree.js"></script>
+    <script type="text/javascript" src="../libs/js/phylowidget/tree_functions.js"></script>
+ 
+ 
+ <STYLE type="text/css">
+text {
+	font-size:10px;
+}
+/* 
+path.link {
+  fill: white;
+//  stroke: black;
+  stroke-width: 2.5px;
+
+path.selected {
+            stroke: darkred;
+            fill: red;
+            stroke-width: 10px;
+        }
+ */
+
+path.link {
+            fill: none;
+            stroke: gray;
+            stroke-width: 2.5px;
+        }
+
+        path.selected {
+            stroke: darkred;
+            fill: none;
+            stroke-width: 5px;
+        }
+
+circle {
+  //fill: white;
+ // stroke: black;
+  stroke-width: 5.5px;  
+}
+
+text.domainlabel{
+color : white;
+}
+
+
+.tooltip, .tooltip-pending-removal {
+  position: absolute;
+  background-color: rgba(255,255,255,1);
+  padding: 10px;
+  border: 1px solid #ddd;
+  z-index: 10000;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 13px;
+  border-radius: 10px;
+
+  pointer-events: none;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+ </STYLE>
+ 
+  </head>
+  <body>
+  <table >
+  <tr>
+	  <th>internal node names</th> 
+	  <th>IDs/Taxa</th> 
+	  <th>Bootstrap</th> 
+	  <th>domains</th> 
+  </tr>
+  <tr>
+  	<td>
+			<a href="#" onclick="hide_internal_text();return false">hide</a>/
+			<a href="#" onclick="show_internal_text();return false">(all</a>
+			<a href="#" onclick="show_internal_text_important();return false">/selected)</a>
+		</td>
+  	<td>
+				<a href="#" onclick="show_leaf_ids(); return false">IDs</a>/
+				<a href="#" onclick="show_leaf_taxa(); return false">taxa</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="show_bootstrap(); return false">show</a>/
+				<a href="#" onclick="hide_bootstrap(); return false">hide</a><br>
+			</td>
+  	<td>
+				<a href="#" onclick="show_conservation(); return false">conservation</a>/
+				<a href="#" onclick="show_domains(); return false">domains</a>/
+				<a href="#" onclick="show_synteny(); return false">synteny</a>/<br>
+			</td>
+
+	</tr>
+	</table>	
+	<br/>
+		<button class="btn btn-success" id="save_as_svg" value="">
+			Save as SVG</button>
+		<button class="btn btn-success" id="save_as_pdf" value="">
+			Save as PDF</button>
+		<button class="btn btn-success" id="save_as_png" value="">
+			Save as High-Res PNG</button>
+	<br>
+	<div id="my_custom_menu" style="border=1; display:none; background-color:#white; color:#2D006B; text-decoration:none;border:1px solid #12127D;">
+	collapse nodes<br>
+	highlight stuff
+	</div>
+	<div id="my_domain_menu" style="border=1; display:none; background-color:white; color:#2D006B; text-decoration:none;border:1px solid #12127D;">
+	
+	</div>
+  	  <div style="overflow=auto" id="tree"></div>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+				var json_tree = "../data/trees/gene_tree.json";
+				var no_genes = 48 * 2;
+				var alignment_length = 54 * 2;
+				var image_path = "../data/images/species_files";
+
+				
+				draw_d3_tree({no_genes : no_genes, alignment_length: alignment_length, json_tree: json_tree, image_path: image_path});
+
+
+				jQuery("#show_svg_code").click(function() { show_svg_code(); });
+				jQuery("#save_as_svg").click(function() { submit_download_form("svg"); });
+				jQuery("#save_as_pdf").click(function() { submit_download_form("pdf"); });
+				jQuery("#save_as_png").click(function() { submit_download_form("png"); });
+		});
+</script>
+</body>
+</html>

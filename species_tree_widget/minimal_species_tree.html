@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Minimal tree</title>
+    
+
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="../../libs/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../libs/js/jquery/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="../libs/js/phylowidget/minimal_species_tree.js"></script>
+
+	 <link href="../../libs/css/tipsy.css" rel="stylesheet" type="text/css" />
+
+ 
+ 
+ <STYLE type="text/css">
+
+text.minimal_species_tree {
+	font-size:12px;
+}
+path.link {
+  fill: none;
+//  stroke: black;
+  stroke-width: 2.5px;
+}
+
+
+circle.minimal_species_tree {
+  fill: white;
+  stroke: black;
+  stroke-width: 2.5px;
+}
+.gene_pies { visibility:hidden;}
+.species_pies { visibility:hidden;}
+
+ </STYLE>
+ 
+  </head>
+  <body>
+show percentage:
+	<a href="#" onclick="show_species_pies();return false">by species</a>/
+			<a href="#" onclick="show_gene_pies();return false">by sequence</a>
+	  <div style="    overflow=auto" id="minimal_species_tree"></div>
+  	<script type="text/javascript">
+		jQuery(document).ready(function() {
+				var json_tree = "../data/trees/minimal_species_tree.json";
+				var show_pie_charts = 1;
+				var tree_hight = "300";
+				var tree_width = "400"
+				draw_minimal_species_tree({ json_tree : json_tree, 
+											show_pie_charts : show_pie_charts,
+											tree_hight : tree_hight,
+											tree_width : tree_width });
+		});
+		
+		
+</script>
+  	
+    
+  </body>
+</html>

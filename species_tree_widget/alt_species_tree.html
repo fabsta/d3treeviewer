@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Testpage for OMA GETHOG widget using D3.js</title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+
+<style>
+    g.node {
+        font-family: Verdana, Helvetica;
+        font-size: 12px;
+        font-weight: bold;
+    
+        cursor: pointer
+    }
+    
+    circle.node-dot {
+        fill: lightsalmon;
+        stroke: red;
+        stroke-width: 1px;;
+    }
+    
+    circle.hover {
+        fill: darkblue;
+    }
+    
+    path.link {
+        fill: none;
+        stroke: gray;
+    }
+    
+    path.selected {
+        stroke: darkred;
+        fill: none;
+        stroke-width: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="tree-container"></div>
+
+<script type="text/javascript" src="/libs/js/phylowidget/alt_tree.js"></script>
+
+    <script>
+$(function(){
+        var treeData ="/data/trees/minimal_species_tree.json";
+        console.log(treeData);
+        d3.json(treeData, function(tree){
+            buildTree("#tree-container", tree);
+        });
+});
+</script>
+
+</body>
+</html>
